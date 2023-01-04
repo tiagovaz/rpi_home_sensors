@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# Based on https://blog.kugelfish.com/2014/01/raspberry-pi-temperature-data-recorder_24.html
+
 import os
 import rrdtool
 import tempfile
@@ -55,8 +57,8 @@ class Graph:
                     'GPRINT:out:AVERAGE:Avg\:%8.2lf',
                     'GPRINT:out:MAX:Max\:%8.2lf',
                     r'GPRINT:out:MIN:Min\:%8.2lf\j')
-      with open(path, 'rb') as f: # open the file in read binary mode
-          data = f.read() # read the bytes from the file to a variable
+      with open(path, 'rb') as f:
+          data = f.read()
       os.unlink(path)
       web.header('Content-Type', 'image/png')
       return data
